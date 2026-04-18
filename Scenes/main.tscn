@@ -1,0 +1,258 @@
+[gd_scene format=3 uid="uid://dqywai6gkvioj"]
+
+[ext_resource type="Script" uid="uid://bx37lu0hr4glm" path="res://Scripts/card_manager.gd" id="1_21xkr"]
+[ext_resource type="Script" uid="uid://ckaenyyaamiik" path="res://Scenes/main.gd" id="1_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://qc0yiq3bgfbt" path="res://Scenes/card_slot.tscn" id="2_6bp64"]
+[ext_resource type="Script" uid="uid://ekf5lvchwqgh" path="res://Scenes/flag.gd" id="2_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://bq3uq08di5lut" path="res://Scenes/opponent_card_slot.tscn" id="3_6bp64"]
+[ext_resource type="Script" uid="uid://bms1npphflrex" path="res://Scripts/player_hand.gd" id="3_344ge"]
+[ext_resource type="Script" uid="uid://cvj2grcmeeuk0" path="res://Scripts/deck.gd" id="4_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://ppu5b8we8dk" path="res://Assets/card_designs/backofcardTroops.png" id="5_6bp64"]
+[ext_resource type="Script" uid="uid://btectmq4uegwx" path="res://Scripts/opponent_hand.gd" id="5_hptm8"]
+[ext_resource type="Script" uid="uid://dav4vwuudk1fd" path="res://Scripts/input_manager.gd" id="6_d1ilt"]
+[ext_resource type="Script" uid="uid://bb3b1b3fww0mv" path="res://Scenes/battle_manager.gd" id="8_344ge"]
+[ext_resource type="Texture2D" uid="uid://cv5cf0cb1v31v" path="res://Assets/card_designs/backofcardTactics.png" id="11_6iyac"]
+[ext_resource type="Script" uid="uid://cyhnnul8n2pr1" path="res://Scenes/opponent.gd" id="11_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://chkewfee70uop" path="res://Assets/card_designs/flag.png" id="13_fdnlq"]
+[ext_resource type="Script" uid="uid://8il1668i4grd" path="res://Scripts/tactics_deck.gd" id="13_wsu2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(140, 224)
+
+[node name="Main" type="Node2D" unique_id=15477131]
+script = ExtResource("1_wsu2k")
+
+[node name="CardManager" type="Node2D" parent="." unique_id=1745871376]
+script = ExtResource("1_21xkr")
+
+[node name="Flags" type="Node2D" parent="." unique_id=1774370269]
+
+[node name="Flag1" type="Node2D" parent="Flags" unique_id=2100781712]
+position = Vector2(320, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag1" unique_id=1013861785]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag1" unique_id=276874918 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag1" unique_id=1738432618 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag2" type="Node2D" parent="Flags" unique_id=1938871318]
+position = Vector2(560, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag2" unique_id=180372433]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag2" unique_id=1748567855 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag2" unique_id=1849629277 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag3" type="Node2D" parent="Flags" unique_id=1281464311]
+position = Vector2(800, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag3" unique_id=1910954591]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag3" unique_id=1755335696 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag3" unique_id=326676001 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag4" type="Node2D" parent="Flags" unique_id=711953500]
+position = Vector2(1040, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag4" unique_id=862506132]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag4" unique_id=387501299 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag4" unique_id=445996344 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag5" type="Node2D" parent="Flags" unique_id=1746085704]
+position = Vector2(1280, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag5" unique_id=1096208700]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag5" unique_id=161221561 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag5" unique_id=517041514 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag6" type="Node2D" parent="Flags" unique_id=325122517]
+position = Vector2(1520, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag6" unique_id=515681712]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag6" unique_id=1935625968 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag6" unique_id=514775264 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag7" type="Node2D" parent="Flags" unique_id=1411364409]
+position = Vector2(1760, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag7" unique_id=1832722576]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag7" unique_id=1995551491 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag7" unique_id=1560111669 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag8" type="Node2D" parent="Flags" unique_id=1842280482]
+position = Vector2(2000, 777.00006)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag8" unique_id=1640617129]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag8" unique_id=2110144266 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag8" unique_id=1611362398 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="Flag9" type="Node2D" parent="Flags" unique_id=1639608534]
+position = Vector2(2240, 777)
+scale = Vector2(0.79999995, 0.79999995)
+script = ExtResource("2_jkdf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Flags/Flag9" unique_id=506053093]
+texture = ExtResource("13_fdnlq")
+
+[node name="CardSlot" parent="Flags/Flag9" unique_id=1941730224 instance=ExtResource("2_6bp64")]
+z_index = -3
+position = Vector2(0, 215)
+
+[node name="OpponentCardSlot" parent="Flags/Flag9" unique_id=2147103386 instance=ExtResource("3_6bp64")]
+z_index = -10
+position = Vector2(0, -215)
+
+[node name="PlayerHand" type="Node2D" parent="." unique_id=1141398206]
+script = ExtResource("3_344ge")
+
+[node name="OpponentHand" type="Node2D" parent="." unique_id=1559400192]
+script = ExtResource("5_hptm8")
+
+[node name="InputManager" type="Node2D" parent="." unique_id=2098409078]
+script = ExtResource("6_d1ilt")
+
+[node name="EndTurn" type="Button" parent="." unique_id=1810079272]
+offset_left = 74.0
+offset_top = 1105.0
+offset_right = 152.0
+offset_bottom = 1159.0
+text = "終
+End Turn"
+
+[node name="BattleManager" type="Node2D" parent="." unique_id=1833088933]
+script = ExtResource("8_344ge")
+
+[node name="Deck" type="Node2D" parent="." unique_id=612205242]
+position = Vector2(100, 900)
+script = ExtResource("4_ynf5e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Deck" unique_id=810850060]
+z_index = -2
+position = Vector2(-8.940697e-07, 1.9073486e-06)
+scale = Vector2(0.24734981, 0.27317074)
+texture = ExtResource("5_6bp64")
+
+[node name="Area2D" type="Area2D" parent="Deck" unique_id=226163103]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D" unique_id=1700495517]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Deck" unique_id=412374686]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+offset_left = -40.0
+offset_top = 37.0
+offset_bottom = 77.0
+scale = Vector2(2, 2)
+text = "0"
+horizontal_alignment = 1
+
+[node name="TacticsDeck" type="Node2D" parent="." unique_id=718367126]
+position = Vector2(2460, 900)
+script = ExtResource("13_wsu2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="TacticsDeck" unique_id=564920007]
+z_index = -2
+scale = Vector2(0.24734981, 0.27317074)
+texture = ExtResource("11_6iyac")
+
+[node name="Area2D" type="Area2D" parent="TacticsDeck" unique_id=91622821]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TacticsDeck/Area2D" unique_id=616692197]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TacticsDeck" unique_id=1719872528]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+offset_left = -40.0
+offset_top = 37.0
+offset_bottom = 77.0
+scale = Vector2(2, 2)
+text = "0"
+horizontal_alignment = 1
+
+[node name="BattleTimer" type="Timer" parent="." unique_id=426519538]
+one_shot = true
+
+[node name="Opponent" type="Node2D" parent="." unique_id=984993900]
+script = ExtResource("11_d1ilt")
+
+[connection signal="pressed" from="EndTurn" to="BattleManager" method="_on_end_turn_pressed"]
+[connection signal="mouse_entered" from="Deck/Area2D" to="Deck" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Deck/Area2D" to="Deck" method="_on_area_2d_mouse_exited"]
+[connection signal="hovered" from="TacticsDeck" to="TacticsDeck" method="_on_hovered"]
+[connection signal="mouse_entered" from="TacticsDeck/Area2D" to="TacticsDeck" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="TacticsDeck/Area2D" to="TacticsDeck" method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bq3uq08di5lut"]
+
+[ext_resource type="Script" uid="uid://b2bm2ixlatwyb" path="res://Scripts/card_slot.gd" id="1_4ovwb"]
+[ext_resource type="Texture2D" uid="uid://01y853osrq7y" path="res://Assets/card_designs/cardslot.png" id="2_0jfvd"]
+
+[node name="CardSlot" type="Node2D" unique_id=276874918]
+script = ExtResource("1_4ovwb")
+
+[node name="CardSlotImage" type="Sprite2D" parent="." unique_id=913603102]
+position = Vector2(7.6293945e-06, -44.499992)
+scale = Vector2(0.24734981, 0.38170734)
+texture = ExtResource("2_0jfvd")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=107119140]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Troops"
+horizontal_alignment = 1
