@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://dqywai6gkvioj"]
 
 [ext_resource type="Script" uid="uid://bx37lu0hr4glm" path="res://Scripts/card_manager.gd" id="1_21xkr"]
-[ext_resource type="Script" uid="uid://ckaenyyaamiik" path="res://Scenes/main.gd" id="1_wsu2k"]
+[ext_resource type="Script" uid="uid://ckaenyyaamiik" path="res://Scripts/main.gd" id="1_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://qc0yiq3bgfbt" path="res://Scenes/card_slot.tscn" id="2_6bp64"]
-[ext_resource type="Script" uid="uid://ekf5lvchwqgh" path="res://Scenes/flag.gd" id="2_jkdf5"]
+[ext_resource type="Script" uid="uid://ekf5lvchwqgh" path="res://Scripts/flag.gd" id="2_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://bq3uq08di5lut" path="res://Scenes/opponent_card_slot.tscn" id="3_6bp64"]
 [ext_resource type="Script" uid="uid://bms1npphflrex" path="res://Scripts/player_hand.gd" id="3_344ge"]
 [ext_resource type="Script" uid="uid://cvj2grcmeeuk0" path="res://Scripts/deck.gd" id="4_ynf5e"]
 [ext_resource type="Texture2D" uid="uid://ppu5b8we8dk" path="res://Assets/card_designs/backofcardTroops.png" id="5_6bp64"]
 [ext_resource type="Script" uid="uid://btectmq4uegwx" path="res://Scripts/opponent_hand.gd" id="5_hptm8"]
 [ext_resource type="Script" uid="uid://dav4vwuudk1fd" path="res://Scripts/input_manager.gd" id="6_d1ilt"]
-[ext_resource type="Script" uid="uid://bb3b1b3fww0mv" path="res://Scenes/battle_manager.gd" id="8_344ge"]
+[ext_resource type="Script" uid="uid://bb3b1b3fww0mv" path="res://Scripts/battle_manager.gd" id="8_344ge"]
 [ext_resource type="Texture2D" uid="uid://cv5cf0cb1v31v" path="res://Assets/card_designs/backofcardTactics.png" id="11_6iyac"]
-[ext_resource type="Script" uid="uid://cyhnnul8n2pr1" path="res://Scenes/opponent.gd" id="11_d1ilt"]
+[ext_resource type="Script" uid="uid://cyhnnul8n2pr1" path="res://Scripts/opponent.gd" id="11_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://chkewfee70uop" path="res://Assets/card_designs/flag.png" id="13_fdnlq"]
 [ext_resource type="Script" uid="uid://8il1668i4grd" path="res://Scripts/tactics_deck.gd" id="13_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://cngja1wn8y5ay" path="res://Scenes/tooltip.tscn" id="17_h1bgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(140, 224)
@@ -181,10 +182,11 @@ script = ExtResource("5_hptm8")
 script = ExtResource("6_d1ilt")
 
 [node name="EndTurn" type="Button" parent="." unique_id=1810079272]
-offset_left = 74.0
-offset_top = 1105.0
-offset_right = 152.0
-offset_bottom = 1159.0
+offset_left = 157.0
+offset_top = 1374.0
+offset_right = 352.0
+offset_bottom = 1481.0
+theme_override_font_sizes/font_size = 25
 text = "終
 End Turn"
 
@@ -249,6 +251,8 @@ one_shot = true
 
 [node name="Opponent" type="Node2D" parent="." unique_id=984993900]
 script = ExtResource("11_d1ilt")
+
+[node name="Tooltip" parent="." unique_id=1545826545 instance=ExtResource("17_h1bgf")]
 
 [connection signal="pressed" from="EndTurn" to="BattleManager" method="_on_end_turn_pressed"]
 [connection signal="mouse_entered" from="Deck/Area2D" to="Deck" method="_on_area_2d_mouse_entered"]

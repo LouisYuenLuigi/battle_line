@@ -16,14 +16,13 @@ var is_hovering_on_deck
 var player_deck = []
 var played_cards = []
 var colors = ["red","orange","yellow","green","blue","purple"]
-var card_database_reference
+const card_database_reference = preload("res://Scripts/card_database.gd")
 var drawn_card_this_turn = false
 var can_draw_card = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#get cards from db
-	card_database_reference = preload("res://Scripts/card_database.gd")
 	#initialize deck
 	#currently hardcoded, should get from deck json
 	for i in colors:
@@ -64,17 +63,16 @@ func draw_card():
 	var card_background_image_path = str("res://Assets/" + card_color + "/" + card_color + ".png")
 	new_card.get_node("CardImage").texture = load(card_background_image_path)
 	var card_background_design_path = str("res://Assets/card_designs/" + card_title + ".png")
-	#new_card.get_node("CardDesign").texture = load(card_background_image_path)
+	new_card.get_node("CardDesign").texture = load(card_background_design_path)
 	new_card.get_node("NumberCenter").text = card_title
 	new_card.get_node("NumberLeftTop").text = str(card_value)
 	new_card.get_node("NumberRightBottom").text = str(card_value)
-	
+	new_card.card_title = card_title
 	new_card.card_value = card_value
 	new_card.card_color = card_color
 	new_card.card_type = "troops"
-	
-	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name
+	$"../CardManager".add_child(new_card)
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	new_card.get_node("AnimationPlayer").play("card_flip")
 

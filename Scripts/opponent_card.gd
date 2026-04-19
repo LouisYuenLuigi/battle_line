@@ -1,13 +1,11 @@
 extends Node2D
-#
-#signal hovered
-#signal hovered_off
-#
+
 var position_in_hand
 #var card_slot_card_is_in
 var card_type
 var card_color
 var card_value
+var card_title
 
 
 func retrieve_card_value():

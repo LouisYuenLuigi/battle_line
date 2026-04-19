@@ -13,6 +13,8 @@ var flag
 var whoami
 var sum
 var finished
+var popup_size
+var tooltip_reference
 #formation power:
 #5 wedge: 			same color consecutive
 #4 phalanx: 			diff color same value
@@ -26,6 +28,8 @@ func _ready() -> void:
 	flag = get_parent()
 	sum = 0
 	finished = false
+	popup_size = $Area2D/CollisionShape2D.get_shape().size
+	tooltip_reference = $"../../../Tooltip"
 
 func show_cards():
 	print("showing cards in " + str(self))
@@ -107,3 +111,17 @@ func do_mud():
 
 func disable_slot():
 	finished = true
+
+func trigger_slot_tooltip(on:bool):
+	if !cards_in_slot.is_empty() or !tactics_in_slot.is_empty():
+		#tooltip_reference.show_cards_in_slot(cards_in_slot,tactics_in_slot)
+		tooltip_reference.toggle(on, self)
+
+
+func _on_area_2d_mouse_entered() -> void:
+	trigger_slot_tooltip(true)
+		
+
+
+func _on_area_2d_mouse_exited() -> void:
+	trigger_slot_tooltip(false)

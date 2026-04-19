@@ -88,6 +88,16 @@ func try_play_card_with_highest_value():
 	tween.tween_property(highest_value_card, "position", new_placed_card_position, CARD_MOVE_SPEED)
 	highest_value_card.get_node("AnimationPlayer").play("card_flip")
 	$"../OpponentHand".remove_card_from_hand(highest_value_card)
+	
+	random_available_card_slot.cards_in_slot.append(highest_value_card)
+	random_available_card_slot.show_cards()
+	deck_reference.add_to_played_cards(highest_value_card)
+	#deck_reference.show_played_cards()
+	if random_available_card_slot.cards_in_slot.size() >= random_available_card_slot.MAX_CARDS_IN_SLOT:
+		available_card_slots.erase(random_available_card_slot)
+		random_available_card_slot.submit()
+	#random_available_card_slot.show_cards()
+	
 	battle_timer.start()
 	await battle_timer.timeout
 	
@@ -98,16 +108,7 @@ func try_play_card_with_highest_value():
 	highest_value_card.get_node("NumberCenter").z_index = 2 * random_available_card_slot.cards_in_slot.size()
 	
 	
-	battle_timer.start()
-	await battle_timer.timeout
 	
-	random_available_card_slot.cards_in_slot.append(highest_value_card)
-	deck_reference.add_to_played_cards(highest_value_card)
-	#deck_reference.show_played_cards()
-	if random_available_card_slot.cards_in_slot.size() >= random_available_card_slot.MAX_CARDS_IN_SLOT:
-		available_card_slots.erase(random_available_card_slot)
-		random_available_card_slot.submit()
-	random_available_card_slot.show_cards()
 	
 	battle_timer.start()
 	await battle_timer.timeout

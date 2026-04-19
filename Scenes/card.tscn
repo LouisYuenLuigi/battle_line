@@ -9,7 +9,7 @@
 size = Vector2(140, 224)
 
 [sub_resource type="Animation" id="Animation_eumee"]
-length = 0.26666668
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -269,6 +269,7 @@ offset_left = -64.0
 offset_top = -110.0
 offset_bottom = -89.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 horizontal_alignment = 1
@@ -281,6 +282,7 @@ offset_top = 127.0
 offset_right = 154.0
 offset_bottom = 193.0
 rotation = 3.1415927
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 horizontal_alignment = 1
@@ -292,6 +294,7 @@ offset_left = -85.0
 offset_top = -123.0
 offset_right = -20.0
 offset_bottom = -58.0
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 horizontal_alignment = 1

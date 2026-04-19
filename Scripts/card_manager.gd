@@ -8,6 +8,7 @@ const DEFAULT_CARD_SCALE = 1
 const CARD_BIGGER_SCALE = 1.05
 const CARD_SMALLER_SCALE = 0.8
 
+var tooltip_reference
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
@@ -23,10 +24,10 @@ func _ready() -> void:
 	player_hand_reference = $"../PlayerHand"
 	deck_reference = $"../Deck"
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
+	tooltip_reference = $"../../../Tooltip"
 	
 	for i in $"../Flags".get_child_count():
 		flag_states.append(0)
-	print(flag_states)
 
 
 
@@ -55,42 +56,70 @@ func finish_drag():
 	card_being_dragged.get_node("NumberLeftTop").z_index -= 10
 	card_being_dragged.get_node("NumberCenter").z_index -= 10
 	var card_slot_found = raycast_check_for_card_slot()
-	if card_slot_found and card_slot_found.cards_in_slot.size()<card_slot_found.MAX_CARDS_IN_SLOT and !card_slot_found.finished:
-		if !played_card_this_turn:
-			#card dropped in cardslot
-			card_being_dragged.get_node("CardImage").z_index = 2 * card_slot_found.cards_in_slot.size()
-			card_being_dragged.get_node("CardDesign").z_index = 2 * card_slot_found.cards_in_slot.size()
-			card_being_dragged.get_node("NumberRightBottom").z_index = 2 * card_slot_found.cards_in_slot.size()
-			card_being_dragged.get_node("NumberLeftTop").z_index = 2 * card_slot_found.cards_in_slot.size()
-			card_being_dragged.get_node("NumberCenter").z_index = 2 * card_slot_found.cards_in_slot.size()
-			is_hovering_on_card = false
-			card_being_dragged.card_slot_card_is_in = card_slot_found
-			player_hand_reference.remove_card_from_hand(card_being_dragged)
-			card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
-			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-			card_being_dragged.position.x = card_slot_found.global_position.x
-			
-			if card_being_dragged.card_type == "troops":
+	if card_slot_found.name == "CardSlot":
+		if card_being_dragged.card_type == "troops":
+			if card_slot_found and card_slot_found.cards_in_slot.size()<card_slot_found.MAX_CARDS_IN_SLOT and !card_slot_found.finished and !played_card_this_turn:
 				card_being_dragged.position.y = card_slot_found.global_position.y+ 30 * card_slot_found.cards_in_slot.size()
 				card_slot_found.cards_in_slot.append(card_being_dragged)
 				deck_reference.add_to_played_cards(card_being_dragged)
-			elif card_being_dragged.card_type == "tactics":
+				card_being_dragged.get_node("CardImage").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("CardDesign").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberRightBottom").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberLeftTop").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberCenter").z_index = 2 * card_slot_found.cards_in_slot.size()
+				is_hovering_on_card = false
+				card_being_dragged.card_slot_card_is_in = card_slot_found
+				player_hand_reference.remove_card_from_hand(card_being_dragged)
+				card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
+				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+				card_being_dragged.position.x = card_slot_found.global_position.x
+				#card_slot_found.show_cards()
+				#deck_reference.show_played_cards()
+				card_being_dragged = null
+				disable_play()
+				if card_slot_found.cards_in_slot.size() >= card_slot_found.MAX_CARDS_IN_SLOT:
+					card_slot_found.submit()
+				card_slot_found.trigger_slot_tooltip(true)
+				return
+		elif card_being_dragged.card_type == "tactics":
+			if card_slot_found and !card_slot_found.finished and !played_card_this_turn:
 				card_being_dragged.position.y = card_slot_found.global_position.y+ 250 + 30 * card_slot_found.tactics_in_slot.size()
 				card_slot_found.tactics_in_slot.append(card_being_dragged)
 				card_slot_found.execute_tactic(card_being_dragged.name)
-	
-			
-			
-			card_slot_found.show_cards()
-			#deck_reference.show_played_cards()
-			card_being_dragged = null
-			disable_play()
-			if card_slot_found.cards_in_slot.size() >= card_slot_found.MAX_CARDS_IN_SLOT:
-				card_slot_found.submit()
-			return
+				card_being_dragged.get_node("CardImage").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("CardDesign").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberRightBottom").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberLeftTop").z_index = 2 * card_slot_found.cards_in_slot.size()
+				card_being_dragged.get_node("NumberCenter").z_index = 2 * card_slot_found.cards_in_slot.size()
+				is_hovering_on_card = false
+				card_being_dragged.card_slot_card_is_in = card_slot_found
+				player_hand_reference.remove_card_from_hand(card_being_dragged)
+				card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
+				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+				card_being_dragged.position.x = card_slot_found.global_position.x
+				#card_slot_found.show_cards()
+				#deck_reference.show_played_cards()
+				card_being_dragged = null
+				disable_play()
+				card_slot_found.trigger_slot_tooltip(true)
+				return
+
 	player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_being_dragged = null
 	
+
+
+#func play_troop_card():
+	#card_being_dragged.position.y = card_slot_found.global_position.y+ 250 + 30 * card_slot_found.tactics_in_slot.size()
+	#card_slot_found.tactics_in_slot.append(card_being_dragged)
+	#card_slot_found.execute_tactic(card_being_dragged.name)
+	
+	
+#func play_tactics_card():
+	#card_being_dragged.position.y = card_slot_found.global_position.y+ 250 + 30 * card_slot_found.tactics_in_slot.size()
+	#card_slot_found.tactics_in_slot.append(card_being_dragged)
+	#card_slot_found.execute_tactic(card_being_dragged.name)
+
 func on_left_click_released():
 	if card_being_dragged:
 		finish_drag()
