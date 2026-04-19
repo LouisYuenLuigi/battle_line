@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cngja1wn8y5ay"]
+
+[ext_resource type="Script" uid="uid://p2wgqnbm5mqv" path="res://Scripts/tooltip.gd" id="1_ogi1g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k12tt"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.7019608, 0.4509804, 0.0627451, 0.8862745)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Tooltip" type="PanelContainer" unique_id=1545826545]
+top_level = true
+z_index = 15
+custom_minimum_size = Vector2(200, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k12tt")
+script = ExtResource("1_ogi1g")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=700067286]
+layout_mode = 2
+mouse_filter = 2
+text = "ambatukam"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=739431391]
+layout_mode = 2

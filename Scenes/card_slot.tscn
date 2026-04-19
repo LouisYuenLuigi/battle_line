@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://qc0yiq3bgfbt"]
+
+[ext_resource type="Script" uid="uid://b2bm2ixlatwyb" path="res://Scripts/card_slot.gd" id="1_jmuc5"]
+[ext_resource type="Texture2D" uid="uid://01y853osrq7y" path="res://Assets/card_designs/cardslot.png" id="1_qx3y6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmuc5"]
+size = Vector2(140, 328)
+
+[node name="CardSlot" type="Node2D" unique_id=276874918]
+script = ExtResource("1_jmuc5")
+
+[node name="CardSlotImage" type="Sprite2D" parent="." unique_id=913603102]
+position = Vector2(7.6293945e-06, 52)
+scale = Vector2(0.24734981, 0.39999998)
+texture = ExtResource("1_qx3y6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1509548400]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1845109448]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_jmuc5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=217684256]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "Troops"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
