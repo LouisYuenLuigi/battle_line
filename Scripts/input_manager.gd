@@ -34,6 +34,7 @@ func raycast_at_cursor():
 	var result = space_state.intersect_point(parameters)
 	if result.size() > 0:
 		var result_collision_mask = result[0].collider.collision_mask
+		#print(result_collision_mask)
 		match result_collision_mask:
 			COLLISION_MASK_CARD:
 				var card_found = result[0].collider.get_parent()
@@ -42,5 +43,4 @@ func raycast_at_cursor():
 			COLLISION_MASK_DECK:
 				deck_reference.draw_card()
 			COLLISION_MASK_TACTICS:
-				print("draw from tax")
 				tactics_deck_reference.draw_card()

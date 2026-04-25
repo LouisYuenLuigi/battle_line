@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var position_in_hand
 #var card_slot_card_is_in

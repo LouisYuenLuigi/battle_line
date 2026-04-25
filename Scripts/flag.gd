@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Control
 const FLAG_MOVE_SPEED = 1
 
 var first
@@ -23,12 +22,11 @@ var conquered
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	battle_manager_reference = $"../../BattleManager"
-	card_manager_reference = $"../../CardManager"
+	battle_manager_reference = $"../../../BattleManager"
+	card_manager_reference = $"../../../CardManager"
 	playerhere = false
 	opponenthere = false
-	flag_sprite = self.get_node("Sprite2D")
-	new_flag_position = flag_sprite.position
+	flag_sprite = self.get_node("Flag")
 	flag_id = int(name.right(1))
 	player = get_node("CardSlot")
 	opponent = get_node("OpponentCardSlot")
@@ -98,6 +96,7 @@ func move_flag():
 	flag_sprite.z_index += 10
 	var tween = get_tree().create_tween()
 	tween.tween_property(flag_sprite, "position", new_flag_position, FLAG_MOVE_SPEED)
+	flag_sprite.modulate.a = 0
 
 func update_flag_states():
 	match winner:

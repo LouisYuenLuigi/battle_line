@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var MAX_CARDS_IN_SLOT
 var card_slot_type
@@ -13,8 +13,9 @@ var flag
 var whoami
 var sum
 var finished
-var popup_size
 var tooltip_reference
+var card_selector_reference
+var card_manager_reference
 #formation power:
 #5 wedge: 			same color consecutive
 #4 phalanx: 			diff color same value
@@ -28,8 +29,10 @@ func _ready() -> void:
 	flag = get_parent()
 	sum = 0
 	finished = false
-	popup_size = $Area2D/CollisionShape2D.get_shape().size
-	tooltip_reference = $"../../../Tooltip"
+	tooltip_reference = $"../../../../Tooltip"
+	card_selector_reference = $"../../../../CardSelector"
+	card_manager_reference = $"../../../../CardManager"
+	#print($Area2D.collision_mask)
 
 func show_cards():
 	print("showing cards in " + str(self))
@@ -95,10 +98,10 @@ func calculate_formation():
 func execute_tactic(tactic):
 	print("doing "+ str(tactic))
 	match tactic:
-		"alexander": print("not  implemented yet boss")
-		"darius": print("not  implemented yet boss")
-		"companioncavalry": print("not  implemented yet boss")
-		"shieldbearers": print("not  implemented yet boss")
+		"alexander": card_selector_reference.start("alexander", self)
+		"darius": card_selector_reference.start("darius", self)
+		"companioncavalry": card_selector_reference.start("companioncavalry", self)
+		"shieldbearers": card_selector_reference.start("shieldbearers", self)
 		"fog": flag.make_fog()
 		"mud": flag.make_mud()
 		"scout": print("not  implemented yet boss")
@@ -112,6 +115,13 @@ func do_mud():
 func disable_slot():
 	finished = true
 
+func mark_slot(truth):
+	if truth:
+		card_manager_reference.set_card_slot(self)
+	else:
+		card_manager_reference.set_card_slot(null)
+	#print("Marked ass nigga : " + str(truth) + " "+str(self.get_parent().name))
+
 func trigger_slot_tooltip(on:bool):
 	if !cards_in_slot.is_empty() or !tactics_in_slot.is_empty():
 		#tooltip_reference.show_cards_in_slot(cards_in_slot,tactics_in_slot)
@@ -119,9 +129,12 @@ func trigger_slot_tooltip(on:bool):
 
 
 func _on_area_2d_mouse_entered() -> void:
+	#print("sloton")
+	#mark_slot(true)
 	trigger_slot_tooltip(true)
 		
 
 
 func _on_area_2d_mouse_exited() -> void:
+	#mark_slot(false)
 	trigger_slot_tooltip(false)

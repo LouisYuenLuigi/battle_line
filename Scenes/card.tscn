@@ -237,37 +237,43 @@ _data = {
 &"card_flip": SubResource("Animation_e6po8")
 }
 
-[node name="Card" type="Node2D" unique_id=1936765140]
-position = Vector2(100, 900)
+[node name="Card" type="TextureRect" unique_id=358954061]
+custom_minimum_size = Vector2(140, 224)
+offset_right = 140.0
+offset_bottom = 224.0
+mouse_filter = 2
 script = ExtResource("1_rjlel")
 
 [node name="CardImageBack" type="Sprite2D" parent="." unique_id=1314988342]
-position = Vector2(-1.1444092e-05, 5.6234214e-05)
+position = Vector2(69.999985, 112.000046)
 scale = Vector2(0.2473498, 0.27317074)
 texture = ExtResource("2_eumee")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1106610419]
 z_index = -1
-position = Vector2(-1, 0)
+position = Vector2(70, 112.00001)
 scale = Vector2(0.2473498, 0.2731707)
 texture = ExtResource("2_wf8id")
 
 [node name="CardDesign" type="Sprite2D" parent="." unique_id=278554846]
 z_index = -1
-position = Vector2(-3.695488e-06, -1.2874603e-05)
+position = Vector2(71, 111.999985)
 scale = Vector2(0.05, 0.339)
 texture = ExtResource("4_eumee")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1433913669]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1937484909]
+position = Vector2(70, 112)
 shape = SubResource("RectangleShape2D_rjlel")
 
 [node name="NumberCenter" type="RichTextLabel" parent="." unique_id=1183096760]
 modulate = Color(0, 0, 0, 0)
-offset_left = -64.0
-offset_top = -110.0
-offset_bottom = -89.0
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 71.0
+offset_bottom = 23.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -277,10 +283,11 @@ vertical_alignment = 1
 
 [node name="NumberRightBottom" type="RichTextLabel" parent="." unique_id=1871776573]
 modulate = Color(0, 0, 0, 0)
-offset_left = 85.0
-offset_top = 127.0
-offset_right = 154.0
-offset_bottom = 193.0
+layout_mode = 0
+offset_left = 156.0
+offset_top = 239.0
+offset_right = 225.0
+offset_bottom = 305.0
 rotation = 3.1415927
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -290,10 +297,11 @@ vertical_alignment = 1
 
 [node name="NumberLeftTop" type="RichTextLabel" parent="." unique_id=1652529137]
 modulate = Color(0, 0, 0, 0)
-offset_left = -85.0
-offset_top = -123.0
-offset_right = -20.0
-offset_bottom = -58.0
+layout_mode = 0
+offset_left = -14.0
+offset_top = -11.0
+offset_right = 51.0
+offset_bottom = 54.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24

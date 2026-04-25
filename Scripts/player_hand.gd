@@ -2,12 +2,10 @@ extends Node2D
 
 const MAX_HAND_COUNT = 7
 const CARD_WIDTH = 150
-const HAND_Y_POSITION = 1440
+const HAND_Y_POSITION = 1340
 const DEFAULT_CARD_MOVE_SPEED = 0.1
 
 var flag_states = []
-
-
 
 var player_hand = []
 var center_screen_x
@@ -15,7 +13,7 @@ var center_screen_x
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
-	for i in $"../Flags".get_child_count():
+	for i in $"../CenterContainer/Flags".get_child_count():
 		flag_states.append(0)
 
 

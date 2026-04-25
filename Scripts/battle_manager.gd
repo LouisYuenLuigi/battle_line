@@ -16,20 +16,14 @@ func _ready() -> void:
 	battle_timer.one_shot = true
 	battle_timer.wait_time = 1.0
 	
-	available_card_slots.append($"../Flags/Flag1/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag2/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag3/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag4/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag5/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag6/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag7/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag8/OpponentCardSlot")
-	available_card_slots.append($"../Flags/Flag9/OpponentCardSlot")
+	for i in $"../CenterContainer/Flags".get_children():
+		available_card_slots.append(i.get_node("OpponentCardSlot"))
 	opponent_hand = $"../OpponentHand".opponent_hand
 	
-	for i in $"../Flags".get_child_count():
+	for i in $"../CenterContainer/Flags".get_child_count():
 		flag_states.append(0)
-
+	
+	#print(available_card_slots)
 
 
 func _on_end_turn_pressed() -> void:
@@ -80,8 +74,10 @@ func try_play_card_with_highest_value():
 	highest_value_card.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)		
 	#animate card to position
 	var new_placed_card_position = random_available_card_slot.global_position
-	new_placed_card_position.x = random_available_card_slot.global_position.x
-	new_placed_card_position.y = random_available_card_slot.global_position.y - 30 * random_available_card_slot.cards_in_slot.size()
+	new_placed_card_position.x = random_available_card_slot.global_position.x + random_available_card_slot.size.x * CARD_SMALLER_SCALE
+	new_placed_card_position.y = random_available_card_slot.global_position.y + random_available_card_slot.size.y * CARD_SMALLER_SCALE - 30 * random_available_card_slot.cards_in_slot.size()
+	#random_available_card_slot.get_node("CardContainer").add_child(highest_value_card)
+	#highest_value_card.reparent(random_available_card_slot.get_node("CardContainer"))
 	
 	
 	var tween = get_tree().create_tween()
@@ -90,7 +86,7 @@ func try_play_card_with_highest_value():
 	$"../OpponentHand".remove_card_from_hand(highest_value_card)
 	
 	random_available_card_slot.cards_in_slot.append(highest_value_card)
-	random_available_card_slot.show_cards()
+	#random_available_card_slot.show_cards()
 	deck_reference.add_to_played_cards(highest_value_card)
 	#deck_reference.show_played_cards()
 	if random_available_card_slot.cards_in_slot.size() >= random_available_card_slot.MAX_CARDS_IN_SLOT:

@@ -67,16 +67,16 @@ const CARDS = {
   "purple10": ["戦象", "purple", 10]
 },
 	"tactics":{ #name (japanese), description(?)
-		"alexander": ["アレキサンダー"],
-		"darius": ["ダリウス"],
-		"companioncavalry": ["援軍騎兵"],
-		"shieldbearers": ["盾"],
-		"fog":["霧"],
-		"mud":["泥濘"],
-		"scout": ["偵察"],
-		"redeploy": ["配置転換"],
-		"deserter": ["脱走"],
-		"traitor": ["裏切り"]
+		"alexander": ["アレキサンダー", "morale"],
+		"darius": ["ダリウス", "morale"],
+		"companioncavalry": ["援軍騎兵", "morale"],
+		"shieldbearers": ["盾", "morale"],
+		"fog":["霧", "environment"],
+		"mud":["泥濘", "environment"],
+		"scout": ["偵察", "guile"],
+		"redeploy": ["配置転換", "guile"],
+		"deserter": ["脱走", "guile"],
+		"traitor": ["裏切り", "guile"]
 		
 	}
 	

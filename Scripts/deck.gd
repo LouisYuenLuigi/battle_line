@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 signal hovered
 signal hovered_off
@@ -55,6 +55,12 @@ func draw_card():
 		$RichTextLabel.visible = false
 	
 	$RichTextLabel.text = str(player_deck.size())
+	var new_card = create_card(card_drawn_name)
+	
+	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	new_card.get_node("AnimationPlayer").play("card_flip")
+
+func create_card(card_drawn_name):
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
 	var card_color = str(card_database_reference.CARDS["troops"][card_drawn_name][1])
@@ -72,9 +78,9 @@ func draw_card():
 	new_card.card_color = card_color
 	new_card.card_type = "troops"
 	new_card.name = card_drawn_name
+	new_card.card_id = card_drawn_name
 	$"../CardManager".add_child(new_card)
-	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
-	new_card.get_node("AnimationPlayer").play("card_flip")
+	return new_card
 
 func disable_draw():
 	drawn_card_this_turn = true

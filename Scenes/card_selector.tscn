@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://d1pbe2u8khb83"]
+
+[ext_resource type="Script" uid="uid://dph1qp8xlal1a" path="res://Scripts/card_selector.gd" id="1_61p4t"]
+[ext_resource type="PackedScene" uid="uid://c3e0g5e364og1" path="res://Scenes/button_panel.tscn" id="2_o6m3w"]
+[ext_resource type="PackedScene" uid="uid://dk1kletppfekh" path="res://Scenes/cardUI.tscn" id="3_ukc6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61p4t"]
+bg_color = Color(0.8392157, 0.46666667, 0.58431375, 0.8980392)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ukc6k"]
+
+[node name="CardSelector" type="PanelContainer" unique_id=1160570881]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.0
+offset_top = -212.0
+offset_right = 321.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_61p4t")
+script = ExtResource("1_61p4t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=803787570]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=345466798]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "ambatubus"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1102855871]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1112787177]
+layout_mode = 2
+
+[node name="+" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=799646700]
+layout_mode = 2
+text = "+"
+
+[node name="Card" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1278619264 instance=ExtResource("3_ukc6k")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="-" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1062452582]
+layout_mode = 2
+text = "-"
+
+[node name="ButtonPanel" parent="VBoxContainer/HBoxContainer" unique_id=893629137 instance=ExtResource("2_o6m3w")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+group = SubResource("ButtonGroup_ukc6k")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/+" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/-" to="." method="_on__pressed"]

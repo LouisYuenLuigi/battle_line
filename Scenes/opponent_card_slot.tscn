@@ -6,15 +6,32 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t8rhd"]
 size = Vector2(140, 328)
 
-[node name="CardSlot" type="Node2D" unique_id=276874918]
+[node name="CardSlot" type="Control" unique_id=549722479]
+custom_minimum_size = Vector2(141, 328)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 141.0
+offset_bottom = 328.0
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
 script = ExtResource("1_4ovwb")
 
 [node name="CardSlotImage" type="Sprite2D" parent="." unique_id=913603102]
-position = Vector2(7.6293945e-06, -52.000004)
+position = Vector2(70.00001, 164)
 scale = Vector2(0.24734981, 0.4)
 texture = ExtResource("2_0jfvd")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1681357733]
+rotation = -3.1415925
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1045839297]
+position = Vector2(-70.000015, -164)
+shape = SubResource("RectangleShape2D_t8rhd")
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=107119140]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -31,14 +48,16 @@ theme_override_font_sizes/normal_font_size = 25
 text = "Troops"
 horizontal_alignment = 1
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1681357733]
-rotation = 3.1415927
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1045839297]
-position = Vector2(0, 52)
-shape = SubResource("RectangleShape2D_t8rhd")
+[node name="CardContainer" type="VBoxContainer" parent="." unique_id=214191534]
+custom_minimum_size = Vector2(141, 328)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

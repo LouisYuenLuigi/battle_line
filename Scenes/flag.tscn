@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://lbhhvaeryj8j"]
+
+[ext_resource type="Script" uid="uid://ekf5lvchwqgh" path="res://Scripts/flag.gd" id="1_gusjr"]
+[ext_resource type="Texture2D" uid="uid://chkewfee70uop" path="res://Assets/card_designs/flag.png" id="2_8kv76"]
+[ext_resource type="PackedScene" uid="uid://qc0yiq3bgfbt" path="res://Scenes/card_slot.tscn" id="3_wskdx"]
+[ext_resource type="PackedScene" uid="uid://bq3uq08di5lut" path="res://Scenes/opponent_card_slot.tscn" id="4_7i8hx"]
+
+[node name="Flag" type="VBoxContainer" unique_id=841043265]
+offset_right = 200.0
+offset_bottom = 864.0
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+script = ExtResource("1_gusjr")
+
+[node name="OpponentCardSlot" parent="." unique_id=549722479 instance=ExtResource("4_7i8hx")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Flag" type="TextureRect" parent="." unique_id=1737279283]
+layout_mode = 2
+texture = ExtResource("2_8kv76")
+
+[node name="CardSlot" parent="." unique_id=1433743539 instance=ExtResource("3_wskdx")]
+layout_mode = 2
+mouse_filter = 2

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c3e0g5e364og1"]
+
+[ext_resource type="Script" uid="uid://djmnm1fpo2e2p" path="res://Scripts/button_panel.gd" id="1_pqb3x"]
+[ext_resource type="ButtonGroup" uid="uid://cj5xwensys4e" path="res://new_button_group.tres" id="1_rcp12"]
+
+[node name="ButtonPanel" type="Control" unique_id=893629137]
+custom_minimum_size = Vector2(408, 290)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.5
+offset_top = -143.25
+offset_right = 204.5
+offset_bottom = 146.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pqb3x")
+group = ExtResource("1_rcp12")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=332058234]
+custom_minimum_size = Vector2(404, 283)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -141.5
+offset_right = 202.0
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1828038673]
+custom_minimum_size = Vector2(404, 248)
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="1" type="Button" parent="VBoxContainer/GridContainer" unique_id=2042600283]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "niggas"
+
+[node name="2" type="Button" parent="VBoxContainer/GridContainer" unique_id=1885846823]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "niggas"
+
+[node name="3" type="Button" parent="VBoxContainer/GridContainer" unique_id=1841428519]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "biggas"
+
+[node name="4" type="Button" parent="VBoxContainer/GridContainer" unique_id=1748051468]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "biggas"
+
+[node name="5" type="Button" parent="VBoxContainer/GridContainer" unique_id=1348938003]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "paris"
+
+[node name="6" type="Button" parent="VBoxContainer/GridContainer" unique_id=143418162]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_group = ExtResource("1_rcp12")
+text = "paris"
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1838614537]
+custom_minimum_size = Vector2(404, 32)
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

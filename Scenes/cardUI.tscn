@@ -1,54 +1,79 @@
 [gd_scene format=3 uid="uid://dk1kletppfekh"]
 
-[ext_resource type="Script" uid="uid://cee8y3xihj1x6" path="res://Scenes/card_ui.gd" id="1_60hnl"]
+[ext_resource type="Script" uid="uid://cee8y3xihj1x6" path="res://Scripts/card_ui.gd" id="1_60hnl"]
 [ext_resource type="Texture2D" uid="uid://cia2ph5nylbcc" path="res://Assets/red/red.png" id="3_utv40"]
 [ext_resource type="Texture2D" uid="uid://c5dv48dnr2yq2" path="res://Assets/card_designs/散兵.png" id="4_jvqw8"]
 
-[node name="Card" type="Node2D" unique_id=1936765140]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60hnl"]
+size = Vector2(140.00008, 225.00017)
+
+[node name="Card" type="Control" unique_id=1278619264]
 z_index = 17
+custom_minimum_size = Vector2(140, 225)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 139.99998
+offset_bottom = 224.99998
 scale = Vector2(0.8, 0.8)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_60hnl")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1106610419]
 z_index = -1
-position = Vector2(-0.9999997, 0)
-scale = Vector2(0.24734971, 0.2731706)
+position = Vector2(69.99999, 111.999985)
+scale = Vector2(0.24734968, 0.2731706)
 texture = ExtResource("3_utv40")
 
 [node name="CardDesign" type="Sprite2D" parent="." unique_id=278554846]
 z_index = -1
-position = Vector2(-3.6954868e-06, -1.2874599e-05)
+position = Vector2(69.99999, 111.99998)
 scale = Vector2(0.33899987, 0.33899987)
 texture = ExtResource("4_jvqw8")
 
 [node name="NumberCenter" type="RichTextLabel" parent="." unique_id=1183096760]
-offset_left = -63.99998
-offset_top = -109.99996
-offset_right = 1.9073486e-05
-offset_bottom = -88.99996
+layout_mode = 0
+offset_left = 6.0000224
+offset_top = 2.0000455
+offset_right = 70.00002
+offset_bottom = 23.000046
 scale = Vector2(2, 2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="NumberRightBottom" type="RichTextLabel" parent="." unique_id=1871776573]
-offset_left = 84.999985
-offset_top = 126.999954
-offset_right = 154.0
-offset_bottom = 192.99995
+layout_mode = 0
+offset_left = 154.99997
+offset_top = 238.99992
+offset_right = 223.99998
+offset_bottom = 304.9999
 rotation = 3.1415927
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="NumberLeftTop" type="RichTextLabel" parent="." unique_id=1652529137]
-offset_left = -84.999985
-offset_top = -122.99996
-offset_right = -19.999985
-offset_bottom = -57.99996
+layout_mode = 0
+offset_left = -14.9999895
+offset_top = -10.999955
+offset_right = 50.00001
+offset_bottom = 54.000046
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=70404709]
+position = Vector2(69.99999, 111.999985)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=101775238]
+position = Vector2(1.1920923e-07, -2.3841853e-06)
+scale = Vector2(0.9999991, 0.9999991)
+shape = SubResource("RectangleShape2D_60hnl")

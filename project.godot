@@ -14,10 +14,6 @@ config/name="BATTL LINES"
 run/main_scene="uid://dqywai6gkvioj"
 config/features=PackedStringArray("4.6", "Mobile")
 
-[autoload]
-
-Popups="*uid://epa5sljxfh5m"
-
 [display]
 
 window/size/viewport_width=2560

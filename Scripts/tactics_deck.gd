@@ -56,8 +56,9 @@ func draw_card():
 
 	$"../CardManager".add_child(new_card)
 	new_card.name = card_drawn_name
+	new_card.card_id = card_drawn_name
 	new_card.position = position
-	new_card.card_type = "tactics"
+	new_card.card_type = str(card_database_reference.CARDS["tactics"][card_drawn_name][1])
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	#keep card face down, dont flip 
 	new_card.get_node("AnimationPlayer").play("card_flip")

@@ -1,7 +1,6 @@
 extends Node2D
 
-signal hovered
-signal hovered_off
+
 const DECK_BIGGER_SCALE = 1.05
 const DEFAULT_DECK_SCALE = 1
 
