@@ -72,6 +72,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="." unique_id=70404709]
 position = Vector2(69.99999, 111.999985)
 scale = Vector2(0.9999998, 0.9999998)
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=101775238]
 position = Vector2(1.1920923e-07, -2.3841853e-06)

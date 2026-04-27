@@ -13,17 +13,27 @@
 [ext_resource type="Script" uid="uid://8il1668i4grd" path="res://Scripts/tactics_deck.gd" id="13_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://lbhhvaeryj8j" path="res://Scenes/flag.tscn" id="14_jkdf5"]
 [ext_resource type="Script" uid="uid://c6f65j5bfo5w1" path="res://Scenes/flags.gd" id="14_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://lt4b2pdtwyix" path="res://Scenes/scout_panel.tscn" id="16_k12tt"]
 [ext_resource type="PackedScene" uid="uid://d1pbe2u8khb83" path="res://Scenes/card_selector.tscn" id="17_b3802"]
+[ext_resource type="Texture2D" uid="uid://lhkx0ib38sr3" path="res://Assets/background/ive_bg_HD.jpg" id="17_fevyy"]
 [ext_resource type="PackedScene" uid="uid://cngja1wn8y5ay" path="res://Scenes/tooltip.tscn" id="17_h1bgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(140, 224)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h1bgf"]
+light_mode = 1
+
 [node name="Main" type="Node2D" unique_id=15477131]
 script = ExtResource("1_wsu2k")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1387242442]
-layer = -1
+[node name="Background" type="Sprite2D" parent="." unique_id=2112153742]
+modulate = Color(0.5027185, 0.50271857, 0.5027184, 1)
+z_index = -200
+position = Vector2(1280, 800.00006)
+scale = Vector2(0.49999997, 0.5555556)
+texture = ExtResource("17_fevyy")
+metadata/_edit_lock_ = true
 
 [node name="CardManager" type="Node2D" parent="." unique_id=1745871376]
 script = ExtResource("1_21xkr")
@@ -124,6 +134,7 @@ offset_right = -364.0
 offset_bottom = -172.0
 
 [node name="Tooltip" parent="." unique_id=1545826545 instance=ExtResource("17_h1bgf")]
+material = SubResource("CanvasItemMaterial_h1bgf")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1371698396]
 z_index = -20
@@ -179,6 +190,13 @@ layout_mode = 2
 
 [node name="Flag9" parent="CenterContainer/Flags" unique_id=1785459519 instance=ExtResource("14_jkdf5")]
 layout_mode = 2
+
+[node name="ScoutPanel" parent="." unique_id=1669216396 instance=ExtResource("16_k12tt")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1129123475]
+visible = false
+z_index = 10
+color = Color(0.972549, 0.5568628, 0.5137255, 0.7647059)
 
 [connection signal="pressed" from="EndTurn" to="BattleManager" method="_on_end_turn_pressed"]
 [connection signal="mouse_entered" from="Deck/Area2D" to="Deck" method="_on_area_2d_mouse_entered"]

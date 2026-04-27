@@ -13,6 +13,7 @@ var player
 var opponent
 var new_flag_position
 var flag_sprite
+var flag_state
 var flag_id
 var battle_manager_reference
 var card_manager_reference
@@ -26,7 +27,11 @@ func _ready() -> void:
 	card_manager_reference = $"../../../CardManager"
 	playerhere = false
 	opponenthere = false
-	flag_sprite = self.get_node("Flag")
+	flag_sprite = %FlagSprite
+	flag_state = self.get_node("FlagState")
+	new_flag_position = flag_state.position
+	#print(str(flag_sprite.size))
+	flag_state.visible = false
 	flag_id = int(name.right(1))
 	player = get_node("CardSlot")
 	opponent = get_node("OpponentCardSlot")
@@ -47,7 +52,10 @@ func receive(someone,formation_power, sum):
 	if playerhere && opponenthere:
 		disable_slots()
 		print(compare()+" is the winner!!")
-		move_flag()
+		#move_flag()
+		flag_sprite.visible = false
+		flag_state.text = winner + " won"
+		flag_state.visible = true
 		update_flag_states()
 		
 
@@ -90,6 +98,7 @@ func compare():
 	return winner
 
 func move_flag():
+	flag_sprite.reparent(null)
 	match winner:
 		"player": new_flag_position.y += 250
 		"opponent": new_flag_position.y -= 250

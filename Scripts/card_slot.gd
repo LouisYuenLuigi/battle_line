@@ -13,9 +13,10 @@ var flag
 var whoami
 var sum
 var finished
-var tooltip_reference
-var card_selector_reference
-var card_manager_reference
+@onready var tooltip_reference = $"../../../../Tooltip"
+@onready var card_selector_reference = $"../../../../CardSelector"
+@onready var card_manager_reference = $"../../../../CardManager"
+@onready var player_hand_reference = $"../../../../PlayerHand"
 #formation power:
 #5 wedge: 			same color consecutive
 #4 phalanx: 			diff color same value
@@ -29,9 +30,7 @@ func _ready() -> void:
 	flag = get_parent()
 	sum = 0
 	finished = false
-	tooltip_reference = $"../../../../Tooltip"
-	card_selector_reference = $"../../../../CardSelector"
-	card_manager_reference = $"../../../../CardManager"
+		
 	#print($Area2D.collision_mask)
 
 func show_cards():
@@ -104,7 +103,7 @@ func execute_tactic(tactic):
 		"shieldbearers": card_selector_reference.start("shieldbearers", self)
 		"fog": flag.make_fog()
 		"mud": flag.make_mud()
-		"scout": print("not  implemented yet boss")
+		"scout": player_hand_reference.scout()
 		"redeploy": print("not  implemented yet boss")
 		"deserter": print("not  implemented yet boss")
 		"traitor": print("not  implemented yet boss")

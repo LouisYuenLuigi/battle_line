@@ -1,18 +1,16 @@
 extends Node2D
-var battle_timer
+@onready var battle_timer = $"../BattleTimer"
 var available_card_slots = []
 var flag_states = []
 var card_database_reference
 const CARD_MOVE_SPEED = 0.2
 const CARD_SMALLER_SCALE = 0.8
 var opponent_hand
-var deck_reference
+@onready var deck_reference = $"../Deck"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	card_database_reference = preload("res://Scripts/card_database.gd")
-	battle_timer = $"../BattleTimer"
-	deck_reference = $"../Deck"
 	battle_timer.one_shot = true
 	battle_timer.wait_time = 1.0
 	

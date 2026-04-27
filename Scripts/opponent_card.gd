@@ -6,6 +6,7 @@ var card_type
 var card_color
 var card_value
 var card_title
+var card_id
 
 
 func retrieve_card_value():

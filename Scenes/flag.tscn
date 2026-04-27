@@ -18,11 +18,20 @@ script = ExtResource("1_gusjr")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 2
 
-[node name="Flag" type="TextureRect" parent="." unique_id=1737279283]
+[node name="FlagSprite" type="TextureRect" parent="." unique_id=1737279283]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_8kv76")
+
+[node name="FlagState" type="RichTextLabel" parent="." unique_id=528827174]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "albatukam"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CardSlot" parent="." unique_id=1433743539 instance=ExtResource("3_wskdx")]
 layout_mode = 2

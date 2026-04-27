@@ -39,25 +39,8 @@ func draw_card():
 	#if last card drawn, disable deck
 	$"../Deck/RichTextLabel".text = str(opponent_deck.size())
 
-	var card_scene = preload(CARD_SCENE_PATH)
-	var new_card = card_scene.instantiate()
-	var card_color = str(card_database_reference.CARDS["troops"][card_drawn_name][1])
-	var card_title = str(card_database_reference.CARDS["troops"][card_drawn_name][0])
-	var card_value = card_database_reference.CARDS["troops"][card_drawn_name][2]
-	var card_background_image_path = str("res://Assets/" + card_color + "/" + card_color + ".png")
-	new_card.get_node("CardImage").texture = load(card_background_image_path)
-	var card_background_design_path = str("res://Assets/card_designs/" + card_title + ".png")
-	new_card.get_node("CardDesign").texture = load(card_background_design_path)
-	new_card.get_node("NumberCenter").text = card_title
-	new_card.get_node("NumberLeftTop").text = str(card_value)
-	new_card.get_node("NumberRightBottom").text = str(card_value)
-	
-	new_card.card_value = card_value
-	new_card.card_color = card_color
-	new_card.card_title = card_title
-
-	$"../CardManager".add_child(new_card)
-	new_card.name = card_drawn_name
+	var new_card = deck_reference.create_card(card_drawn_name, CARD_SCENE_PATH)
+	new_card.position = deck_reference.position
 	$"../OpponentHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	#keep card face down, dont flip 
 	#new_card.get_node("AnimationPlayer").play("card_flip")

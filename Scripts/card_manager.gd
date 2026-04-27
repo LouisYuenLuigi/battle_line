@@ -9,25 +9,23 @@ const CARD_BIGGER_SCALE = 1.05
 const CARD_SMALLER_SCALE = 0.8
 const SUPER_HOVER_Z_INDEX = 10
 
-var tooltip_reference
+@onready var tooltip_reference = $"../Tooltip"
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
-var player_hand_reference
-var deck_reference
+@onready var player_hand_reference = $"../PlayerHand"
+@onready var deck_reference = $"../Deck"
 var played_card_this_turn
 var flag_states = []
 var card_slot_found
 
+@onready var choosing_scouted_cards = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	played_card_this_turn = false
 	screen_size = get_viewport_rect().size
-	player_hand_reference = $"../PlayerHand"
-	deck_reference = $"../Deck"
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
-	tooltip_reference = $"../Tooltip"
 	
 	
 	for i in $"../CenterContainer/Flags".get_child_count():
@@ -44,6 +42,8 @@ func _process(_delta: float) -> void:
 			
 
 func start_drag(card):
+	if choosing_scouted_cards:
+		return
 	card_being_dragged = card
 	card.scale = Vector2(CARD_BIGGER_SCALE,CARD_BIGGER_SCALE)
 	card_being_dragged.get_node("CardImage").z_index += SUPER_HOVER_Z_INDEX
@@ -55,6 +55,9 @@ func start_drag(card):
 
 func set_card_slot(slot):
 	card_slot_found = slot
+
+func toggle_choosing_scouted_cards(value:bool):
+	choosing_scouted_cards = (value)
 
 func finish_drag():
 	card_being_dragged.scale = Vector2(DEFAULT_CARD_SCALE,DEFAULT_CARD_SCALE)

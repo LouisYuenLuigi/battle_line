@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://lt4b2pdtwyix"]
+
+[ext_resource type="Script" uid="uid://bt24tyqp2d6a2" path="res://Scenes/scout_panel.gd" id="1_0dgdy"]
+[ext_resource type="StyleBox" uid="uid://6w1ojjegtjnt" path="res://UI_panel_style.tres" id="1_50kqq"]
+
+[node name="ScoutPanel" type="PanelContainer" unique_id=1669216396]
+z_index = 20
+custom_minimum_size = Vector2(160, 245)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_50kqq")
+script = ExtResource("1_0dgdy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=188780622]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=394081731]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Troops" type="HBoxContainer" parent="VBoxContainer" unique_id=1876977835]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=271857857]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

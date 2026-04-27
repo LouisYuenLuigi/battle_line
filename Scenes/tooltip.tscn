@@ -1,31 +1,20 @@
 [gd_scene format=3 uid="uid://cngja1wn8y5ay"]
 
+[ext_resource type="StyleBox" uid="uid://6w1ojjegtjnt" path="res://UI_panel_style.tres" id="1_617o6"]
 [ext_resource type="Script" uid="uid://p2wgqnbm5mqv" path="res://Scripts/tooltip.gd" id="1_ogi1g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k12tt"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-bg_color = Color(0.7019608, 0.4509804, 0.0627451, 0.8862745)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ogi1g"]
+light_mode = 1
 
 [node name="Tooltip" type="PanelContainer" unique_id=1545826545]
 top_level = true
 z_index = 15
+material = SubResource("CanvasItemMaterial_ogi1g")
 custom_minimum_size = Vector2(160, 245)
 offset_right = 160.0
 offset_bottom = 245.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_k12tt")
+theme_override_styles/panel = ExtResource("1_617o6")
 script = ExtResource("1_ogi1g")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=826376336]
@@ -42,14 +31,14 @@ text = "ambatukam"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1989178881]
+[node name="Troops" type="HBoxContainer" parent="VBoxContainer" unique_id=1989178881]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=84147659]
+[node name="Tactics" type="HBoxContainer" parent="VBoxContainer" unique_id=84147659]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6

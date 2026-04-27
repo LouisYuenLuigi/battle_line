@@ -3,19 +3,19 @@ extends Node2D
 signal left_mouse_button_clicked
 signal left_mouse_button_released
 
-
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_DECK = 4
 const COLLISION_MASK_TACTICS = 8
+const COLLISION_MASK_CARD_UI = 16
 
-var card_manager_reference
-var tactics_deck_reference
-var deck_reference
+@onready var deck_reference = $"../Deck"
+@onready var card_manager_reference = $"../CardManager"
+@onready var tactics_deck_reference = $"../TacticsDeck"
+@onready var player_hand_reference = $"../PlayerHand"
 
 func _ready() -> void:
-	card_manager_reference = $"../CardManager"
-	deck_reference = $"../Deck"
-	tactics_deck_reference = $"../TacticsDeck"
+	#player_hand_reference.connect_click_signals(self)
+	pass
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -40,7 +40,13 @@ func raycast_at_cursor():
 				var card_found = result[0].collider.get_parent()
 				if card_found:
 					card_manager_reference.start_drag(card_found)
+					player_hand_reference.pick_card(card_found)
+					
 			COLLISION_MASK_DECK:
 				deck_reference.draw_card()
 			COLLISION_MASK_TACTICS:
 				tactics_deck_reference.draw_card()
+			COLLISION_MASK_CARD_UI:
+				var card_ui_found = result[0].collider.get_parent()
+				if card_ui_found:
+					player_hand_reference.remove_discard_choice(card_ui_found)

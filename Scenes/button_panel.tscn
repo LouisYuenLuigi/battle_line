@@ -91,7 +91,7 @@ button_group = ExtResource("1_rcp12")
 text = "paris"
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer" unique_id=1838614537]
-custom_minimum_size = Vector2(404, 32)
+custom_minimum_size = Vector2(404, 40)
 layout_mode = 2
 text = "Confirm"
 

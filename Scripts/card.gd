@@ -10,6 +10,7 @@ var card_color
 var card_value
 var card_title
 var card_id
+var card_UI_reference
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

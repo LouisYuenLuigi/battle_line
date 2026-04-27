@@ -1,14 +1,17 @@
 extends PanelContainer
 const CARD_UI_SCENE_PATH = "res://Scenes/cardUI.tscn"
 const BUTTON_PANEL_SCENE_PATH = "res://Scenes/button_panel.tscn"
+const CARD_SCENE_PATH_PLAYER = "res://Scenes/card.tscn"
+const CARD_SCENE_PATH_OPPONENT = "res://Scenes/opponent_card.tscn"
 const CARD_SMALLER_SCALE = 0.8
 var opacity_tween: Tween = null
-var text_reference
+@onready var text_reference = $VBoxContainer/RichTextLabel
+@onready var canvas_dim_reference = $"../CanvasModulate"
 var card_UI_scene
 var button_panel_scene
-var hbox_reference
-var vbox_reference
-var card_ui_reference
+@onready var hbox_reference = $VBoxContainer/HBoxContainer
+@onready var vbox_reference = $VBoxContainer
+@onready var card_ui_reference = %Card
 const card_database_reference = preload("res://Scripts/card_database.gd")
 const HAND_Y_POSITION = 150
 var center_x
@@ -17,7 +20,7 @@ var center_screen_x
 var center_screen_y
 var card_slot_showing
 var new_card
-var deck_reference
+@onready var deck_reference = $"../Deck"
 const CARD_WIDTH = 115
 const CARD_UI_SCALE = 2
 var colors = ["#b83dba","#ff7f27","#b83dba","#0ed145","#3f48cc","#b83dba"]
@@ -32,16 +35,12 @@ var card_value
 var card_background_image_path
 var card_background_design_path
 var played_tactic
-var tooltip_reference
+@onready var tooltip_reference = $"../Tooltip"
 var card_slot_played_in
+@onready var End_Turn_Button_Reference = $"../EndTurn"
 
 func _ready() -> void:
-	text_reference = $VBoxContainer/RichTextLabel
-	hbox_reference = $VBoxContainer/HBoxContainer
-	vbox_reference = $VBoxContainer
-	card_ui_reference = %Card
-	tooltip_reference = $"../Tooltip"
-	deck_reference = $"../Deck"
+		
 	card_UI_scene = preload(CARD_UI_SCENE_PATH)
 	button_panel_scene = preload(BUTTON_PANEL_SCENE_PATH)
 	#size = Vector2(get_viewport().size.x / 2 ,get_viewport().size.y / 2)
@@ -61,6 +60,9 @@ func start(tactic, card_slot):
 	played_tactic = tactic
 	decide_tactic(tactic)
 	show()
+	End_Turn_Button_Reference.disabled = true
+	End_Turn_Button_Reference.visible = false
+	#canvas_dim_reference.visible = true
 	
 	
 func decide_tactic(tactic):
@@ -130,10 +132,13 @@ func _on__pressed() -> void:
 func end(card_id):
 	print("i chose " + card_id)
 	hide()
-	var new_card = deck_reference.create_card(card_id)
+	var new_card = deck_reference.create_card(card_id,CARD_SCENE_PATH_PLAYER)
 	new_card.get_node("AnimationPlayer").play("card_flip")
 	play_card(new_card, card_slot_played_in)
 	tooltip_reference.other_UI = false
+	End_Turn_Button_Reference.disabled = false
+	End_Turn_Button_Reference.visible = true
+	#canvas_dim_reference.visible = false
 
 
 func play_card(new_card, card_slot_played_in):
