@@ -8,6 +8,7 @@ const DEFAULT_CARD_SCALE = 1
 const CARD_BIGGER_SCALE = 1.05
 const CARD_SMALLER_SCALE = 0.8
 const SUPER_HOVER_Z_INDEX = 10
+@onready var dragging_or_not = false
 
 @onready var tooltip_reference = $"../Tooltip"
 var screen_size
@@ -42,6 +43,7 @@ func _process(_delta: float) -> void:
 			
 
 func start_drag(card):
+	dragging_or_not = true
 	if choosing_scouted_cards:
 		return
 	card_being_dragged = card
@@ -53,6 +55,13 @@ func start_drag(card):
 	card_being_dragged.get_node("NumberCenter").z_index += SUPER_HOVER_Z_INDEX
 	tooltip_reference.dragging(true)
 
+func toggle_highlight(on, card_slot_to_highlight):
+	if !on:
+		card_slot_to_highlight.highlight(on)
+		return
+	if !played_card_this_turn and dragging_or_not:
+		card_slot_to_highlight.highlight(on)
+
 func set_card_slot(slot):
 	card_slot_found = slot
 
@@ -60,6 +69,7 @@ func toggle_choosing_scouted_cards(value:bool):
 	choosing_scouted_cards = (value)
 
 func finish_drag():
+	dragging_or_not = false
 	card_being_dragged.scale = Vector2(DEFAULT_CARD_SCALE,DEFAULT_CARD_SCALE)
 	card_being_dragged.get_node("CardImage").z_index -= SUPER_HOVER_Z_INDEX
 	card_being_dragged.get_node("CardDesign").z_index -= SUPER_HOVER_Z_INDEX

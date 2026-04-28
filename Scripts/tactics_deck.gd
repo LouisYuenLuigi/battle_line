@@ -32,7 +32,7 @@ func _ready() -> void:
 		tactics_deck.append(str(i))
 	card_count_text_reference.text = str(tactics_deck.size())
 	tactics_deck.shuffle()
-	tactics_deck.push_front("scout")
+	#tactics_deck.push_front("scout")
 	scouting = false
 
 func insert_card_in_front(card_to_insert):

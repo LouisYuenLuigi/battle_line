@@ -17,6 +17,8 @@ var finished
 @onready var card_selector_reference = $"../../../../CardSelector"
 @onready var card_manager_reference = $"../../../../CardManager"
 @onready var player_hand_reference = $"../../../../PlayerHand"
+@onready var card_slot_highlight = $Highlight
+@onready var text_reference = $RichTextLabel
 #formation power:
 #5 wedge: 			same color consecutive
 #4 phalanx: 			diff color same value
@@ -30,8 +32,14 @@ func _ready() -> void:
 	flag = get_parent()
 	sum = 0
 	finished = false
+	if name == "CardSlot":
+		card_slot_highlight.visible = false
+	#text_reference.text = "niggas"
 		
 	#print($Area2D.collision_mask)
+
+func highlight(state:bool):
+	card_slot_highlight.visible = state
 
 func show_cards():
 	print("showing cards in " + str(self))
@@ -126,14 +134,23 @@ func trigger_slot_tooltip(on:bool):
 		#tooltip_reference.show_cards_in_slot(cards_in_slot,tactics_in_slot)
 		tooltip_reference.toggle(on, self)
 
+func trigger_slot_highlight(on:bool):
+	if name == "CardSlot":
+		if !cards_in_slot.size() >= MAX_CARDS_IN_SLOT:
+			card_manager_reference.toggle_highlight(on, self)
+		else:
+			self.highlight(false)
 
 func _on_area_2d_mouse_entered() -> void:
 	#print("sloton")
 	#mark_slot(true)
+	print(name)
 	trigger_slot_tooltip(true)
+	trigger_slot_highlight(true)
 		
 
 
 func _on_area_2d_mouse_exited() -> void:
 	#mark_slot(false)
 	trigger_slot_tooltip(false)
+	trigger_slot_highlight(false)

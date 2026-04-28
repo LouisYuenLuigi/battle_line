@@ -7,7 +7,7 @@ var opacity_tween: Tween = null
 @onready var text_reference = $VBoxContainer/RichTextLabel
 @onready var troops_reference = %Troops
 @onready var tactics_reference = $VBoxContainer/Tactics
-@onready var vbox_reference = $VBoxContainer
+@onready var vbox_reference = $VBoxContainer 
 const card_database_reference = preload("res://Scripts/card_database.gd")
 const HAND_Y_POSITION = 150
 var center_x
@@ -118,12 +118,13 @@ func toggle(on:bool, card_slot_showing_local):
 		modulate.a = 0.0
 		tween_opacity(1.0)
 
+
 	else:
 		modulate.a = 1.0
 		await tween_opacity(0.0).finished
 		hide()
-		card_slot_showing_local = null
 		reset_panel()
+		card_slot_showing_local = null
 
 func dragging(on):
 	dragging_card = on

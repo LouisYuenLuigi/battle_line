@@ -4,7 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://01y853osrq7y" path="res://Assets/card_designs/cardslot.png" id="1_qx3y6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmuc5"]
-size = Vector2(140, 328)
+size = Vector2(141, 328)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd0t8"]
+bg_color = Color(0.3873702, 0.50889623, 0.967652, 0.6862745)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+corner_detail = 20
 
 [node name="CardSlot" type="Control" unique_id=1433743539]
 custom_minimum_size = Vector2(141, 328)
@@ -19,8 +27,8 @@ script = ExtResource("1_jmuc5")
 
 [node name="CardSlotImage" type="Sprite2D" parent="." unique_id=913603102]
 z_index = -2
-position = Vector2(71.00001, 164)
-scale = Vector2(0.24734981, 0.39999998)
+position = Vector2(70.5, 164)
+scale = Vector2(0.24911658, 0.39999998)
 texture = ExtResource("1_qx3y6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1509548400]
@@ -28,7 +36,8 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1845109448]
-position = Vector2(71, 164)
+position = Vector2(70.499985, 163.99998)
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_jmuc5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=217684256]
@@ -49,6 +58,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+
+[node name="Highlight" type="Panel" parent="." unique_id=1573991924]
+custom_minimum_size = Vector2(141, 328)
+layout_mode = 0
+offset_right = 141.24998
+offset_bottom = 328.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dd0t8")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
