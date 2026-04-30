@@ -17,6 +17,7 @@ var finished
 @onready var card_selector_reference = $"../../../../CardSelector"
 @onready var card_manager_reference = $"../../../../CardManager"
 @onready var player_hand_reference = $"../../../../PlayerHand"
+@onready var guile_tactics_reference = $"../../../../GuileTactics"
 @onready var card_slot_highlight = $Highlight
 @onready var text_reference = $RichTextLabel
 #formation power:
@@ -113,7 +114,7 @@ func execute_tactic(tactic):
 		"mud": flag.make_mud()
 		"scout": player_hand_reference.scout()
 		"redeploy": print("not  implemented yet boss")
-		"deserter": print("not  implemented yet boss")
+		"deserter": guile_tactics_reference.deserter()
 		"traitor": print("not  implemented yet boss")
 
 func do_mud():

@@ -28,6 +28,7 @@ texture = ExtResource("2_8kv76")
 [node name="FlagState" type="RichTextLabel" parent="." unique_id=528827174]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 32
 text = "albatukam"
 horizontal_alignment = 1
