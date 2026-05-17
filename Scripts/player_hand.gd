@@ -35,8 +35,7 @@ func _ready() -> void:
 	for i in $"../CenterContainer/Flags".get_child_count():
 		flag_states.append(0)
 
-#func connect_click_signals(input_manager_reference):
-	#input_manager_reference.connect("left_mouse_button_clicked",click)
+
 
 #func click():
 	#pass
@@ -87,6 +86,8 @@ func choose_scouted_cards():
 	scout_panel_reference.start_discard()
 	
 func remove_discard_choice(card_UI_to_remove):
+	if !choosing_scouted_cards:
+		return
 	var card_to_remove = card_UI_to_remove.card_copied
 	#print("not gon discard "+ str(card_to_remove))
 	scout_panel_reference.remove_choice(card_to_remove)

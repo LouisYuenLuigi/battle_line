@@ -2,6 +2,7 @@ extends Node2D
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
+const PLAYED_CARD_STACK_BUFFER = 30
 
 const DEFAULT_CARD_MOVE_SPEED = 0.1
 const DEFAULT_CARD_SCALE = 1
@@ -9,13 +10,14 @@ const CARD_BIGGER_SCALE = 1.05
 const CARD_SMALLER_SCALE = 0.8
 const SUPER_HOVER_Z_INDEX = 10
 @onready var dragging_or_not = false
-
+@onready var force_dragging = false
 @onready var tooltip_reference = $"../Tooltip"
 var screen_size
 var card_being_dragged
 var is_hovering_on_card
 @onready var player_hand_reference = $"../PlayerHand"
 @onready var deck_reference = $"../Deck"
+@onready var guile_tactics_reference = $"../GuileTactics"
 var played_card_this_turn
 var flag_states = []
 var card_slot_found
@@ -59,7 +61,7 @@ func toggle_highlight(on, card_slot_to_highlight):
 	if !on:
 		card_slot_to_highlight.highlight(on)
 		return
-	if !played_card_this_turn and dragging_or_not:
+	if !played_card_this_turn and dragging_or_not or guile_tactics_reference.picking_player:
 		card_slot_to_highlight.highlight(on)
 
 func set_card_slot(slot):
@@ -98,9 +100,12 @@ func finish_drag():
 						return
 				"guile", "environment":
 					if card_slot_found and !card_slot_found.finished and !played_card_this_turn:
+						if !card_slot_found.execute_tactic(card_being_dragged.card_id):
+							player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
+							card_being_dragged = null
+							return
 						card_being_dragged = revise_card(card_slot_found, card_slot_found.tactics_in_slot)
 						card_being_dragged.position.y += 250
-						card_slot_found.execute_tactic(card_being_dragged.card_id)
 						card_being_dragged = null
 						disable_play()
 						card_slot_found.trigger_slot_tooltip(true)
@@ -136,7 +141,7 @@ func revise_card(card_slot_found, card_or_tactic_in_slot):
 	card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
 	card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 	card_being_dragged.position.x = card_slot_found.global_position.x
-	card_being_dragged.position.y = card_slot_found.global_position.y+ 30 * (card_or_tactic_in_slot.size()-1)
+	card_being_dragged.position.y = card_slot_found.global_position.y+ PLAYED_CARD_STACK_BUFFER * (card_or_tactic_in_slot.size()-1)
 	#card_slot_found.get_node("CardContainer").add_child(card_being_dragged)
 	#card_being_dragged.reparent(card_slot_found.get_node("CardContainer"))
 	#print(card_slot_found.get_node("CardContainer").get_children())
@@ -200,6 +205,11 @@ func check_win():
 				return
 		else:
 			consecutive_wins = 0
+
+func force_drag_card(force_dragged_card):
+	force_dragging = true
+	start_drag(force_dragged_card)
+
 		
 func raycast_check_for_card_slot():
 	var space_state = get_world_2d().direct_space_state

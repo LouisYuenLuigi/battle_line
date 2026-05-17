@@ -1,5 +1,7 @@
 extends Control
 
+const PLAYED_CARD_STACK_BUFFER = 30
+const CARD_SMALLER_SCALE = 0.8
 var MAX_CARDS_IN_SLOT
 var card_slot_type
 var cards_in_slot = []
@@ -20,6 +22,7 @@ var finished
 @onready var guile_tactics_reference = $"../../../../GuileTactics"
 @onready var card_slot_highlight = $Highlight
 @onready var text_reference = $RichTextLabel
+var opponent_card_slot_of_same_flag
 #formation power:
 #5 wedge: 			same color consecutive
 #4 phalanx: 			diff color same value
@@ -33,8 +36,8 @@ func _ready() -> void:
 	flag = get_parent()
 	sum = 0
 	finished = false
-	if name == "CardSlot":
-		card_slot_highlight.visible = false
+	opponent_card_slot_of_same_flag = get_parent().get_node("OpponentCardSlot")
+	card_slot_highlight.visible = false
 	#text_reference.text = "niggas"
 		
 	#print($Area2D.collision_mask)
@@ -113,9 +116,19 @@ func execute_tactic(tactic):
 		"fog": flag.make_fog()
 		"mud": flag.make_mud()
 		"scout": player_hand_reference.scout()
-		"redeploy": print("not  implemented yet boss")
-		"deserter": guile_tactics_reference.deserter()
-		"traitor": print("not  implemented yet boss")
+		"redeploy":
+			if cards_in_slot.size() <= 0:
+				return false
+			guile_tactics_reference.redeploy(self)
+		"deserter":
+			if opponent_card_slot_of_same_flag.cards_in_slot.size() <= 0:
+				return false
+			guile_tactics_reference.deserter(self)
+		"traitor":
+			if opponent_card_slot_of_same_flag.cards_in_slot.size() <= 0:
+				return false
+			guile_tactics_reference.traitor(self)
+	return true
 
 func do_mud():
 	MAX_CARDS_IN_SLOT +=1
@@ -141,16 +154,38 @@ func trigger_slot_highlight(on:bool):
 			card_manager_reference.toggle_highlight(on, self)
 		else:
 			self.highlight(false)
+	#elif name == "OpponentCardSlot" and guile_tactics_reference.get_picking_opponent():
+		#if !finished:
+			##card_manager_reference.toggle_highlight(on, self)
+			#self.highlight(on)
+		#else:
+			#self.highlight(false)
+
+
+func rearrange_cards_y_position():
+	if cards_in_slot.size() <= 0:
+		return
+	if name == "CardSlot":
+		for i in range(cards_in_slot.size()):
+			cards_in_slot[i].position = Vector2(self.global_position.x,self.global_position.y + i * PLAYED_CARD_STACK_BUFFER )
+			#adjust for rotated point, + card size in coord
+			print(self.name)
+			print("niggas in yeah yeah " + str(cards_in_slot[i].position))
+	else:
+		for i in range(cards_in_slot.size()):
+			cards_in_slot[i].position = Vector2(self.global_position.x,self.global_position.y - i * PLAYED_CARD_STACK_BUFFER )
+			#adjust for rotated point, + card size in coord
+			cards_in_slot[i].position.x += self.size.x * CARD_SMALLER_SCALE
+			cards_in_slot[i].position.y += self.size.y * CARD_SMALLER_SCALE
+			print(self.name)
+			print("niggas in yeah yeah " + str(cards_in_slot[i].position))
 
 func _on_area_2d_mouse_entered() -> void:
 	#print("sloton")
 	#mark_slot(true)
-	print(name)
 	trigger_slot_tooltip(true)
 	trigger_slot_highlight(true)
 		
-
-
 func _on_area_2d_mouse_exited() -> void:
 	#mark_slot(false)
 	trigger_slot_tooltip(false)

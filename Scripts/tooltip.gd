@@ -37,10 +37,13 @@ func _input(event: InputEvent) -> void:
 
 func show_cards_in_slot(card_slot_showing_local):
 	var cards_in_slot = card_slot_showing_local.cards_in_slot
-	var tactics_in_slot = card_slot_showing_local.tactics_in_slot
+		
 	#print("1: "+str(cards_in_slot))
-
+	
 	text_reference.text = "Cards in Slot:"
+	if card_slot_showing_local.name == "discard":
+		text_reference.text = "Discarded cards:"
+	
 	for i in cards_in_slot:
 		var card_scene = preload(CARD_UI_SCENE_PATH)
 		var new_card = card_scene.instantiate()
@@ -63,20 +66,22 @@ func show_cards_in_slot(card_slot_showing_local):
 		
 		cards_in_slot_to_show.append(new_card)
 	
-	for j in tactics_in_slot:
-		var card_scene = preload(CARD_UI_SCENE_PATH)
-		var new_card = card_scene.instantiate()
-		var card_title = str(j.card_title)
-		var card_background_image_path = str("res://Assets/card_designs/tactics.png")
-		new_card.get_node("CardImage").texture = load(card_background_image_path)
-		var card_background_design_path = str("res://Assets/card_designs/" + card_title + ".png")
-		#new_card.get_node("CardDesign").texture = load(card_background_image_path)
-		new_card.get_node("NumberCenter").text = card_title
-		new_card.get_node("Area2D/CollisionShape2D").disabled = true
-		new_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		new_card.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		tactics_reference.add_child(new_card)
-		tactics_in_slot_to_show.append(new_card)
+	if card_slot_showing_local.name != "discard":
+		var tactics_in_slot = card_slot_showing_local.tactics_in_slot
+		for j in tactics_in_slot:
+			var card_scene = preload(CARD_UI_SCENE_PATH)
+			var new_card = card_scene.instantiate()
+			var card_title = str(j.card_title)
+			var card_background_image_path = str("res://Assets/card_designs/tactics.png")
+			new_card.get_node("CardImage").texture = load(card_background_image_path)
+			var card_background_design_path = str("res://Assets/card_designs/" + card_title + ".png")
+			#new_card.get_node("CardDesign").texture = load(card_background_image_path)
+			new_card.get_node("NumberCenter").text = card_title
+			new_card.get_node("Area2D/CollisionShape2D").disabled = true
+			new_card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			new_card.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			tactics_reference.add_child(new_card)
+			tactics_in_slot_to_show.append(new_card)
 
 	#update_positions()
 	troops_reference.update_minimum_size()
@@ -117,7 +122,6 @@ func toggle(on:bool, card_slot_showing_local):
 		show()
 		modulate.a = 0.0
 		tween_opacity(1.0)
-
 
 	else:
 		modulate.a = 1.0

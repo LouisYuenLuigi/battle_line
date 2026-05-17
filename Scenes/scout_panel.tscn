@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lt4b2pdtwyix"]
 
-[ext_resource type="Script" uid="uid://bt24tyqp2d6a2" path="res://Scenes/scout_panel.gd" id="1_0dgdy"]
+[ext_resource type="Script" uid="uid://bt24tyqp2d6a2" path="res://Scripts/scout_panel.gd" id="1_0dgdy"]
 [ext_resource type="StyleBox" uid="uid://6w1ojjegtjnt" path="res://UI_panel_style.tres" id="1_50kqq"]
 
 [node name="ScoutPanel" type="PanelContainer" unique_id=1669216396]

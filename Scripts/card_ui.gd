@@ -7,7 +7,8 @@ var card_color
 var card_value
 var card_title
 var card_copied
+@onready var highlight_reference = $Highlight
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	highlight_reference.visible = false

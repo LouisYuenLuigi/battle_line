@@ -4,6 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cia2ph5nylbcc" path="res://Assets/red/red.png" id="3_utv40"]
 [ext_resource type="Texture2D" uid="uid://c5dv48dnr2yq2" path="res://Assets/card_designs/散兵.png" id="4_jvqw8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60hnl"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+corner_detail = 20
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60hnl"]
 size = Vector2(140.00008, 225.00017)
 
@@ -18,6 +26,17 @@ scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_60hnl")
+
+[node name="Highlight" type="Panel" parent="." unique_id=1990367902]
+visible = false
+z_index = -4
+layout_mode = 0
+offset_left = -3.7499993
+offset_top = -3.7499993
+offset_right = 143.74998
+offset_bottom = 227.49998
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60hnl")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1106610419]
 z_index = -1

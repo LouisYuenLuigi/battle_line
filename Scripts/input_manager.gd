@@ -12,6 +12,7 @@ const COLLISION_MASK_CARD_UI = 16
 @onready var card_manager_reference = $"../CardManager"
 @onready var tactics_deck_reference = $"../TacticsDeck"
 @onready var player_hand_reference = $"../PlayerHand"
+@onready var guile_tactics_reference = $"../GuileTactics"
 
 func _ready() -> void:
 	#player_hand_reference.connect_click_signals(self)
@@ -22,6 +23,7 @@ func _input(event):
 		if event.pressed:
 			emit_signal("left_mouse_button_clicked")
 			raycast_at_cursor()
+			guile_tactics_reference.click()
 		else:
 			emit_signal("left_mouse_button_released")
 
@@ -50,3 +52,4 @@ func raycast_at_cursor():
 				var card_ui_found = result[0].collider.get_parent()
 				if card_ui_found:
 					player_hand_reference.remove_discard_choice(card_ui_found)
+					guile_tactics_reference.select_card(card_ui_found)

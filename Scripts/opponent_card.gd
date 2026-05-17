@@ -9,6 +9,8 @@ var card_title
 var card_id
 
 
+	
+
 func retrieve_card_value():
 	return card_value
 ## Called when the node enters the scene tree for the first time.
